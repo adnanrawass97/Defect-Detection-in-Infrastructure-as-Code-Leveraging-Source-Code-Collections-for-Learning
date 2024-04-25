@@ -2,8 +2,6 @@ import pandas as pd
 import yaml
 import os
 
-
-
 def print_yaml_section(filepath, start, end):
     with open(filepath, 'r') as file:
         lines = file.readlines()[start:end]
@@ -37,7 +35,7 @@ def process_tasks_from_csv(csv_file_path, filepath_column_name, line_number_colu
         print(f"Processing {absolute_path} at line {line_number}")
         find_and_print_task_by_line(absolute_path, line_number)
 
-# Update these variables to match your CSV file and column names
+
 csv_file_path = 'GLITCH-ansible.csv'  # The path to your CSV file
 filepath_column_name = 'Filepath'  # The name of the column containing the file paths
 line_number_column_name = 'Line_Number'  # The name of the column containing the line numbers

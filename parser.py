@@ -2,28 +2,6 @@ import pandas as pd
 import yaml
 import os
 
-<<<<<<< HEAD
-def find_task_bounds_by_line_number(filepath, line_number):
-    with open(filepath, 'r') as file:
-        lines = file.readlines()
-
-    if not lines or line_number > len(lines) or line_number < 1:
-        raise ValueError(f"Line number {line_number} is out of range for file {filepath}")
-
-    target_line = lines[line_number - 1]
-    target_indentation = len(target_line) - len(target_line.lstrip())
-
-    start = line_number - 1
-    while start > 0 and (len(lines[start - 1]) - len(lines[start - 1].lstrip())) >= target_indentation:
-        start -= 1
-    while start > 0 and (len(lines[start - 1].strip()) != 0 and (len(lines[start - 1]) - len(lines[start - 1].lstrip())) <= target_indentation):
-        start -= 1
-
-    end = line_number
-    while end < len(lines) and (len(lines[end]) - len(lines[end].lstrip())) >= target_indentation:
-        end += 1
-
-    return start, end
 
 =======
 >>>>>>> c4dbdb406a4fd8cbd05f61098038c07b554ea71c

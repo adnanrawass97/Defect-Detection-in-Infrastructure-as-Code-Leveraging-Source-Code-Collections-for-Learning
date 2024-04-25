@@ -2,6 +2,7 @@ import pandas as pd
 import yaml
 import os
 
+<<<<<<< HEAD
 def find_task_bounds_by_line_number(filepath, line_number):
     with open(filepath, 'r') as file:
         lines = file.readlines()
@@ -24,6 +25,8 @@ def find_task_bounds_by_line_number(filepath, line_number):
 
     return start, end
 
+=======
+>>>>>>> c4dbdb406a4fd8cbd05f61098038c07b554ea71c
 def print_yaml_section(filepath, start, end):
     with open(filepath, 'r') as file:
         lines = file.readlines()[start:end]
@@ -61,6 +64,10 @@ def process_tasks_from_csv(csv_file_path, filepath_column_name, line_number_colu
             continue  # Skip to the next iteration in the loop
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> c4dbdb406a4fd8cbd05f61098038c07b554ea71c
 csv_file_path = 'GLITCH-ansible.csv'  # The path to your CSV file
 filepath_column_name = 'Filepath'  # The name of the column containing the file paths
 line_number_column_name = 'Line_Number'  # The name of the column containing the line numbers

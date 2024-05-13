@@ -4,12 +4,11 @@ import requests
 import re
 import csv
 import time
-import ast
 
 # Access GitHub Personal Access Token from environment variable
 ACCESS_TOKEN = os.getenv('ACCESS_TOKEN')
 
-# Path to your CSV file containing repository, commit IDs, and file paths
+# Path to CSV file containing repository, commit IDs, and file paths
 CSV_FILE = 'ansible.csv'
 
 # Path to the output CSV file for changes
@@ -20,7 +19,7 @@ def fetch_commit_details(owner, repo, ref):
     url = f'https://api.github.com/repos/{owner}/{repo}/commits/{ref}'
     headers = {'Authorization': f'Bearer {ACCESS_TOKEN}'}
 
-    # Make a GET request to fetch commit details with headers
+    # fetch commit details with headers
     response = requests.get(url, headers=headers)
    
     if response.status_code == 200:
@@ -30,11 +29,6 @@ def fetch_commit_details(owner, repo, ref):
         print(f"Error: Could not fetch commit details for '{ref}' in repository '{owner}/{repo}'")
         return None
 
-
-import re
-
-
-
 def process_diff(diff_text):
     try:
         added_lines = []
@@ -43,7 +37,7 @@ def process_diff(diff_text):
         # Split the patch text into hunks
         hunks = re.split(r'(?m)^@@', diff_text)
 
-        # Loop through each hunk
+        # Loop 
         for hunk in hunks:
             if not hunk.strip():
                 continue
@@ -54,12 +48,12 @@ def process_diff(diff_text):
             # Extract the hunk header and skip it
             hunk_header = lines.pop(0)
 
-            # Loop through each line in the hunk
+            # Loop 
             for line in lines:
-                # Check if the line starts with '!' indicating a changed line
+                # Checking if the line starts with '!' 
                 if line.startswith('!'):
                     continue
-                # Check if the line starts with '-' indicating a deleted line
+                # Check if the line starts with '-'  deleted line
                 elif line.lstrip().startswith('-'):
                     # Append the deleted line to the deleted_lines list
                     deleted_lines.append(line.lstrip()[1:].rstrip('\r'))
@@ -86,9 +80,9 @@ def main():
     with open(CSV_FILE, 'r') as csvfile:
         reader = csv.DictReader(csvfile)  # Use DictReader to access columns by name
         for row in reader:
-            repo = row.get('repository')  # Get the repository name from the 'repository' column
-            commit_id = row.get('commit')  # Get the commit ID from the 'commit' column
-            file_path = row.get('filepath')  # Get the file path from the 'filepath' column
+            repo = row.get('repository')  
+            commit_id = row.get('commit') 
+            file_path = row.get('filepath')  #  'filepath' column
 
             if '/' not in repo:
                 print(f"Error: Invalid repository format '{repo}'. It should be in the format 'owner/repo'.")

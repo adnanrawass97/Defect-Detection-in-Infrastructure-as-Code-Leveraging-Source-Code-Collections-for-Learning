@@ -1,0 +1,4 @@
+https://figshare.com/articles/dataset/Dataset_for_Paper_Titled_Development_Anti-patterns_for_Infrastructure_as_Code/7730234
+https://figshare.com/articles/dataset/Properties_that_Correlate_with_Defective_Infrastructure_as_Code_Scripts/7146875
+https://figshare.com/articles/dataset/Structural_Dataset_With_Defect_Labels_for_IaC_Scripts/5967130
+https://figshare.com/articles/dataset/Characterizing_Defective_Configuration_Code_Scripts_Used_For_Continuous_Deployment/5729535

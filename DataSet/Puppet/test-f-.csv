@@ -1,0 +1,275 @@
+custom_id,misconfigured_snippet,related_cwe,misconfiguration_label
+request-1,$log_dir = '/var/log/nova',CWE-732,1
+request-2,"file { ""/etc/puppet/fileserver.conf"": mode => 0644, owner => root, group => root, require => class[""puppet""], source => ""puppet:///modules/puppetmaster/fileserver.conf""; }",CWE-732,1
+request-3,,,0
+request-4,,,0
+request-5,"'rabbitmq_server_erl_args' => ""+k true +p 1048576""",CWE-250,1
+request-6,"exec { ""install_es_plugin_${title}"": command => ""${es_dir}/bin/plugin install ${plugin_identifier} ${url_param}"", unless => ""egrep -s ^version=${version} ${plugin_dir}/plugin-descriptor.properties"", require => [ package['elasticsearch'], exec[""prune_es_plugin_${title}""], exec[""cleanup_old_plugins_${title}""], ], notify => service['elasticsearch'], }",CWE-78,1
+request-7,"'http.cors.allow-origin' => '/.*/', 'http.cors.enabled' => true,",CWE-942,1
+request-8,"file { '/etc/openstack-dashboard/ssl/private': ensure => directory, owner => 'root', mode => '0755', selinux_ignore_defaults => true, require => file['/etc/openstack-dashboard/ssl'], before => file[""/etc/openstack-dashboard/ssl/private/${::fqdn}.pem""], }",CWE-732,1
+request-8,"openstack_integration::ssl_key { 'horizon': key_path => ""/etc/openstack-dashboard/ssl/private/${::fqdn}.pem"", key_owner => 'root', require => file['/etc/openstack-dashboard/ssl/private'], notify => service['httpd'], }",CWE-522,1
+request-8,"class { '::horizon': secret_key => 'big_secret', ... }",CWE-798,1
+request-9,'redhat': { $heka_user = 'root' },CWE-250,1
+request-10,"file { ""/etc/yum.repos.d/$repo_name.repo"": owner => 0, group => 0, mode => 0644, content => template(""packages/yumrepo.erb""), notify => exec['yum-clean-all']; $mirror_file: owner => 0, group => 0, mode => 0644, content => template(""packages/mirrorlist.erb""), notify => exec['yum-clean-all']; }",CWE-732,1
+request-10,"file { ""/etc/pki/${repo_name}-pubkey.txt"": source => $gpg_key, owner => 0, group => 0, mode => 0644, notify => exec[""install-${repo_name}-repo-pubkey""], show_diff => false; }",CWE-732,1
+request-11,'securitygroup/firewall_driver': value => 'neutron.agent.firewall.noopfirewalldriver';,CWE-284,1
+request-12,"file { 'hiera_data_astute' : ensure => 'symlink', path => $hiera_data_file, target => $astute_data_file, }",CWE-59,1
+request-13,'default/xenapi_connection_password': value => $xenapi_connection_password;,CWE-256,1
+request-14,,,0
+request-15,"file { '/etc/nginx/conf.d/services.conf': content => template('fuel/nginx/services.conf.erb'), owner => 'root', group => 'root', mode => '0644', require => package['nginx'], notify => service['nginx'], }",CWE-732,1
+request-16,"registry::value { 'nowindowsupdate': key => 'hklm\software\microsoft\windows\currentversion\policies\explorer', type => dword, data => '00000001', }",CWE-693,1
+request-17,,,0
+request-18,"package { 'git-review': ensure => '1.24', provider => 'pip', }",CWE-494,1
+request-19,,,0
+request-20,"exec { 'magnum-db-sync': command => ""magnum-db-manage ${extra_params} upgrade head"", path => '/usr/bin', user => $user, refreshonly => true, logoutput => on_failure, }",CWE-78,1
+request-21,,,0
+request-22,,,0
+request-23,"exec { ""git-1.9.2-preview20140411.exe"": command => ""c:\\installersource\\puppetagain.pub.build.mozilla.org\\exes\\git-1.9.2-preview20140411.exe /verysilent /dir=c:\\mozilla-build\\git"", creates => ""c:\\mozilla-build\\git\\unins000.exe"", require => file[""c:/installersource/puppetagain.pub.build.mozilla.org/exes/git-1.9.2-preview20140411.exe""], }",CWE-494,1
+request-24,"db_password => rstrip(hiera('lma::grafana::mysql::password')),
+admin_password => hiera('lma::grafana::mysql::admin_password'),",CWE-522,1
+request-24,"bind_password => hiera('lma::grafana::ldap::bind_password'),",CWE-522,1
+request-25,"$amqp_allow_insecure_clients = $::os_service_default,",CWE-319,1
+request-25,"$rabbit_use_ssl = $::os_service_default,",CWE-319,1
+request-26,"file {""${::l23network::params::interfaces_dir}/interface-up-script-${bond}"": ensure => 'present', owner => 'root', mode => '0755', content => template('l23network/centos_post_up.erb'), }",CWE-732,1
+request-27,"packages::pkgdmg { 'collectd': version => '5.5.0-1', os_version_specific => true, private => false; }",CWE-284,1
+request-28,"mode => '0600', owner => $heka::params::user, group => $heka::params::user,",CWE-266,1
+request-29,,,0
+request-30,"sudoers::custom { 'mig-agent-from-runner': user => $users::builder::username, runas => 'root', command => ""/sbin/mig-agent""; }",CWE-250,1
+request-31,"file { '/etc/ssl/private/rapidssl.pem': source => 'puppet:///modules/nginx/rapidssl.pem', }",CWE-732,1
+request-32,"file { ""${credentials_file}"": content => template(""slaveapi/credentials.json.erb""), owner => $user, group => $group, notify => exec[""$title-reload-slaveapi-server""], require => python::virtualenv[""$basedir""], show_diff => false; }",CWE-538,1
+request-33,,,0
+request-34,"file { ""/etc/nginx/sites-available/${basename}"": ensure => $ensure, content => $content, source => $source, tag => 'nginx', notify => exec['nginx-reload'], }",CWE-732,1
+request-35,"command => ""/etc/zabbix/scripts/check_api.py keystone http ${::internal_address} 5000"";",CWE-78,1
+request-35,"command => ""/etc/zabbix/scripts/check_api.py keystone_service http ${::internal_address} 5000"";",CWE-78,1
+request-36,,,0
+request-37,"rabbitmq_user_permissions { 'neutron@/': configure_permission => '.*', write_permission => '.*', read_permission => '.*', provider => 'rabbitmqctl', require => class['::rabbitmq'], }",CWE-732,1
+request-37,"class { '::neutron::db::mysql': password => 'neutron', }",CWE-521,1
+request-37,"class { '::neutron::keystone::auth': public_url => ""${::openstack_integration::config::base_url}:9696"", internal_url => ""${::openstack_integration::config::base_url}:9696"", admin_url => ""${::openstack_integration::config::base_url}:9696"", password => 'a_big_secret', }",CWE-798,1
+request-37,"class { '::neutron': rabbit_user => 'neutron', rabbit_password => 'an_even_bigger_secret', ... }",CWE-798,1
+request-37,"class { '::neutron::keystone::authtoken': password => 'a_big_secret', ... }",CWE-798,1
+request-37,"class { '::neutron::agents::metadata': debug => true, shared_secret => 'a_big_secret', ... }",CWE-798,1
+request-37,"class { '::neutron::server': database_connection => 'mysql+pymysql://neutron:neutron@127.0.0.1/neutron?charset=utf8', ... }",CWE-798,1
+request-37,"class { '::neutron::server::notifications': auth_url => $::openstack_integration::config::keystone_admin_uri, password => 'a_big_secret', }",CWE-798,1
+request-38,"$public_url = 'http://127.0.0.1:6385', $admin_url = 'http://127.0.0.1:6385', $internal_url = 'http://127.0.0.1:6385',",CWE-319,1
+request-39,,,0
+request-40,,,0
+request-41,"file { $hiera_file: ensure => file, content => $calculated_content, }",CWE-522,1
+request-42,"grafana_datasource { 'lma': ensure => present, url => ""http://${influxdb_vip}:${influxdb_port}"", user => $influxdb_username, password => $influxdb_password, database => $influxdb_database, access_mode => 'proxy', is_default => true, grafana_url => ""${protocol}://${grafana_vip}"", grafana_user => $admin_username, grafana_password => $admin_password, }",CWE-319,1
+request-42,"exec { 'notify_grafana_url': creates => $grafana_link_created_file, command => ""/usr/bin/curl -sl -w \""%{http_code}\"" \ -h 'content-type: application/json' -x post -d '${grafana_link_data}' \ http://${master_ip}:8000/api/clusters/${deployment_id}/plugin_links \ -o /dev/null | /bin/grep 201 && touch ${grafana_link_created_file}"", require => class['lma_monitoring_analytics::grafana_dashboards'], }",CWE-319,1
+request-43,"class gnocchi::storage::file( $file_basepath = '/var/lib/gnocchi', ) { gnocchi_config { 'storage/driver': value => 'file'; 'storage/file_basepath': value => $file_basepath; } }",CWE-276,1
+request-44,,,0
+request-45,"$rabbit_hash = hiera_hash('rabbit', { 'user' => false, 'password' => false, } )
+...
+rabbitmq_user { $rabbit_hash['user']: admin => true, password => $rabbit_hash['password'], provider => 'rabbitmqctl', }",CWE-798,1
+request-45,"rabbitmq_user_permissions { ""${rabbit_hash['user']}@/"": configure_permission => '.*', write_permission => '.*', read_permission => '.*', provider => 'rabbitmqctl', }",CWE-284,1
+request-46,,,0
+request-47,--admin_password '${contrail::service_token}',CWE-522,1
+request-48,,,0
+request-49,"class { '::keystone::roles::admin': email => 'test@example.com', password => 'changeme', }",CWE-798,1
+request-49,"class { '::keystone:ldap': ... password => 'secretpass', ... }",CWE-798,1
+request-50,"file { ""${config_directory}/oozie-env.sh"": content => template($oozie_env_template), mode => '0444', owner => 'root', group => 'oozie', }",CWE-732,1
+request-50,"file { ""${config_directory}/oozie-log4j.properties"": content => template($oozie_log4j_template), mode => '0444', owner => 'root', group => 'oozie', }",CWE-732,1
+request-51,,,0
+request-52,'wguploadbaseurl' => 'http://127.0.0.1:6081',CWE-319,1
+request-53,"file { '/dev/kvm': ensure => present, group => 'kvm', mode => '0660', }",CWE-732,1
+request-54,"package { ""gnupg2"": ensure => latest; }",CWE-494,1
+request-55,,,0
+request-56,,,0
+request-57,'mistral-db-manage --config-file=/etc/mistral/mistral.conf upgrade head',CWE-78,1
+request-57,'mistral-db-manage --config-file=/etc/mistral/mistral.conf populate',CWE-78,1
+request-58,,,0
+request-59,"firewall { '999 drop all': chain => 'baremetal', action => 'drop', proto => 'all', } -> firewall {'00 baremetal-filter ': proto => 'all', iniface => $baremetal_int, jump => 'baremetal', require => class['openstack::firewall'], }",CWE-284,1
+request-60,,,0
+request-62,,,0
+request-63,"$public_url = 'http://127.0.0.1:8989/v2', $admin_url = 'http://127.0.0.1:8989/v2', $internal_url = 'http://127.0.0.1:8989/v2'",CWE-319,1
+request-64,"file { '/etc/selinux/config': ensure => present, mode => '0444', content => template('tripleo/selinux/sysconfig_selinux.erb') }",CWE-276,1
+request-65,"swift::storage::server { storage_local_net_ip => $storage_local_net_ip, devices => $mnt_base_dir, max_connections => $max_connections, owner => $owner, group => $group, }",CWE-732,1
+request-66,'iptstate.tcp': command => 'sudo iptstate -1 | grep tcp | wc -l';,CWE-269,1
+request-66,'iptstate.tcp.syn': command => 'sudo iptstate -1 | grep syn | wc -l';,CWE-269,1
+request-66,'iptstate.tcp.timewait': command => 'sudo iptstate -1 | grep time_wait | wc -l';,CWE-269,1
+request-66,'iptstate.tcp.established': command => 'sudo iptstate -1 | grep established | wc -l';,CWE-269,1
+request-66,'iptstate.tcp.close': command => 'sudo iptstate -1 | grep close | wc -l';,CWE-269,1
+request-66,'iptstate.udp': command => 'sudo iptstate -1 | grep udp | wc -l';,CWE-269,1
+request-66,'iptstate.icmp': command => 'sudo iptstate -1 | grep icmp | wc -l';,CWE-269,1
+request-66,'iptstate.other': command => 'sudo iptstate -1 -t | head -2 |tail -1 | sed -e \'s/^.*other: \(.*\) (.*\/\1/\'',CWE-269,1
+request-67,"file { ""/tmp/falsevalues$value"": ensure => file }",CWE-379,1
+request-68,"class { '::aodh::wsgi::apache': ssl => false, }",CWE-319,1
+request-69,,,0
+request-70,,,0
+request-71,"file {'multipath.conf': path => '/etc/multipath.conf', mode => '0644', owner => root, group => root, source => 'puppet:///modules/plugin_purestorage_cinder/multipath.conf', require => package[$plugin_purestorage_cinder::params::multipath_package_name], notify => service[$plugin_purestorage_cinder::params::multipath_package_name], }",CWE-732,1
+request-72,"class { '::swift::proxy::tempauth': account_user_list => [ { 'user' => 'admin', 'account' => 'admin', 'key' => 'admin', 'groups' => [ 'admin', 'reseller_admin' ], }, { 'user' => 'tester', 'account' => 'test', 'key' => 'testing', 'groups' => ['admin'], }, { 'user' => 'tester2', 'account' => 'test2', 'key' => 'testing2', 'groups' => ['admin'], }, { 'user' => 'tester', 'account' => 'test', 'key' => 'testing3', 'groups' => [], }, ] }",CWE-798,1
+request-72,$swift_shared_secret='changeme',CWE-798,1
+request-73,"file {""/tmp/collection_within_virtual_definitions1_$name.txt"": content => ""file name $name\n"" }",CWE-377,1
+request-73,"file {""/tmp/collection_within_virtual_definitions2_$name.txt"": content => ""this is a test\n"" }",CWE-377,1
+request-74,"package { 'glibc': ensure => ""2.12-1.149.el6_6.5""; }",CWE-1104,1
+request-74,"package { ""libc6"": ensure => '2.15-0ubuntu10.10'; }",CWE-1104,1
+request-75,,,0
+request-76,"file { $logdir: ensure => directory, mode => '0777', require => package['cassandra'], }",CWE-732,1
+request-77,$direct_repo_addresses = ['127.0.0.1'],CWE-494,1
+request-78,,,0
+request-79,,,0
+request-80,,,0
+request-81,"""${name}/hpe3par_username"": value => $hp3par_username;",CWE-522,1
+request-81,"""${name}/san_login"": value => $san_login;",CWE-522,1
+request-82,,,0
+request-83,,,0
+request-84,"""${name}/vmware_host_password"": value => $host_password, secret => true;",CWE-522,1
+request-85,"file { ""${log_dir}/striker"": ensure => 'directory', mode => '0777', }",CWE-732,1
+request-85,"file { '/etc/striker': ensure => 'directory', owner => 'root', group => 'root', mode => '0555', }
+file { '/etc/striker/striker.ini': ensure => 'present', owner => 'root', group => 'root', mode => '0555', content => template('role/striker/striker.ini.erb'), require => [ git::clone['labs/striker'], class['::phabricator'], class['::role::ldapauth'], ], notify => service['apache2'], }",CWE-732,1
+request-85,"mysql::user { $db_user: ensure => present, grant => ""all on ${db_name}.*"", password => $db_pass, require => mysql::db[$db_name], }",CWE-266,1
+request-85,"phabricator::config { 'darkconsole.enabled': value => true, }",CWE-200,1
+request-85,"phabricator::config { 'auth.require-approval': value => false, }",CWE-284,1
+request-86,"$public_url = 'http://127.0.0.1:5050', $admin_url = 'http://127.0.0.1:5050', $internal_url = 'http://127.0.0.1:5050',",CWE-319,1
+request-87,,,0
+request-88,"class { '::osnailyfacter::apache': listen_ports => hiera_array('apache_ports', ['0.0.0.0:80', '0.0.0.0:8888', '0.0.0.0:5000', '0.0.0.0:35357']), }",CWE-200,1
+request-88,"$admin_token = $keystone_hash['admin_token'] ... class { '::keystone': ... admin_token => $admin_token, ... }",CWE-798,1
+request-88,"$public_protocol = get_ssl_property($ssl_hash, $public_ssl_hash, 'keystone', 'public', 'protocol', 'http') ... $internal_protocol = get_ssl_property($ssl_hash, {}, 'keystone', 'internal', 'protocol', 'http') ... $admin_protocol = get_ssl_property($ssl_hash, {}, 'keystone', 'admin', 'protocol', 'http')",CWE-319,1
+request-89,,,0
+request-90,,,0
+request-91,"create_resources('designate_config', $designate_config)",CWE-15,1
+request-92,,,0
+request-93,,,0
+request-94,,,0
+request-95,,,0
+request-96,"charset => 'utf8',",CWE-176,1
+request-97,"file { '/var/log/ceilometer/swift-proxy-server.log': ensure => file, mode => '0664', owner => 'swift', group => 'swift', }",CWE-732,1
+request-98,"package { 'bacula-enterprise-client': ensure => ""8.0.7-1.el6""; }",CWE-494,1
+request-99,$enable_jmxremote = true,CWE-306,1
+request-100,,,0
+request-101,"rabbitmq_user_permissions { 'ceilometer@/': configure_permission => '.*', write_permission => '.*', read_permission => '.*', provider => 'rabbitmqctl', require => class['::rabbitmq'], }",CWE-732,1
+request-101,"class { '::ceilometer::db::mysql': password => 'ceilometer', }",CWE-521,1
+request-101,"class { '::ceilometer::db': database_connection => 'mysql+pymysql://ceilometer:ceilometer@127.0.0.1/ceilometer?charset=utf8', }",CWE-521,1
+request-102,"file { $thresh_cfg_file: ensure => file, content => template('monasca/thresh-config.yml.erb'), mode => '0644', owner => 'root', group => $::monasca::group, require => [group[$::monasca::group], file[$::monasca::log_dir]], }",CWE-200,1
+request-103,"user { root: ensure => present, forcelocal => true, password => secret(""root_pw_cleartext""); }",CWE-522,1
+request-104,"exec { 'waiting-for-neutron-api': environment => [ ""os_tenant_name=${auth_tenant}"", ""os_username=${auth_user}"", ""os_password=${auth_password}"", ""os_auth_url=${auth_url}"", ""os_region_name=${auth_region}"", ""os_endpoint_type=${auth_endpoint_type}"", ], path => '/usr/sbin:/usr/bin:/sbin:/bin', tries => '30', try_sleep => '4', command => 'neutron net-list --http-timeout=4 2>&1 > /dev/null', provider => 'shell' }",CWE-522,1
+request-105,,,0
+request-106,'heat_api_cfn/bind_host': value => $bind_host;,CWE-200,1
+request-107,"command => ""${path}/bin/pip install ${package}""",CWE-78,1
+request-108,,,0
+request-109,$log_dir = '/var/log/heat',CWE-732,1
+request-110,,,0
+request-111,,,0
+request-112,"file { owner => root, backup => false, mode => filemode(0644), source_permissions => ignore, }",CWE-732,1
+request-112,"file { owner => 0, group => 0, mode => filemode(0644), backup => false, }",CWE-732,1
+request-113,,,0
+request-114,allowed_hosts => '*',CWE-284,1
+request-114,secure_cookies => false,CWE-614,1
+request-114,if $horizon_hash['secret_key'] { $secret_key = $horizon_hash['secret_key'] } else { $secret_key = 'dummy_secret_key' },CWE-321,1
+request-115,$auth_url = 'http://localhost:35357',CWE-319,1
+request-115,$auth_uri = 'http://localhost:5000',CWE-319,1
+request-116,$public_url = 'http://127.0.0.1:5000',CWE-319,1
+request-116,$admin_url = 'http://127.0.0.1:35357',CWE-319,1
+request-117,'dogtag_plugin/nss_password': value => $dogtag_plugin_nss_password;,CWE-256,1
+request-118,"rabbitmq_user_permissions { 'cinder@/': configure_permission => '.*', write_permission => '.*', read_permission => '.*', provider => 'rabbitmqctl', require => class['::rabbitmq'], }",CWE-732,1
+request-118,"class { '::cinder::db::mysql': password => 'cinder', }",CWE-259,1
+request-118,"class { '::cinder::keystone::auth': ... password => 'a_big_secret', }",CWE-259,1
+request-118,"class { '::cinder': database_connection => 'mysql+pymysql://cinder:cinder@127.0.0.1/cinder?charset=utf8', ... rabbit_password => 'an_even_bigger_secret', ... }",CWE-259,1
+request-118,"class { '::cinder::keystone::authtoken': password => 'a_big_secret', ... }",CWE-259,1
+request-119,"package { [""libgl1-mesa-dri"", ""libgl1-mesa-glx"", ""libglapi-mesa"", ""libglu1-mesa"", ""libxatracker1"", ""libgl1-mesa-dev:i386""]: ensure => '8.0.4-0ubuntu0.6mozilla1'; }",CWE-494,1
+request-120,$auth_url = 'http://localhost:35357',CWE-319,1
+request-120,$auth_uri = 'http://localhost:5000',CWE-319,1
+request-121,,,0
+request-122,"ceph::key { ""client.${glance_user}"": secret => $mon_key, user => 'glance', group => 'glance', cap_mon => 'allow r', cap_osd => ""allow class-read object_prefix rbd_children, allow rwx pool=${glance_pool}"", inject => true, }",CWE-798,1
+request-122,"ceph::key { ""client.${cinder_user}"": secret => $mon_key, user => 'cinder', group => 'cinder', cap_mon => 'allow r', cap_osd => ""allow class-read object_prefix rbd_children, allow rwx pool=${cinder_pool}, allow rx pool=${glance_pool}"", inject => true, }",CWE-798,1
+request-122,"ceph::key { ""client.${cinder_backup_user}"": secret => $mon_key, user => 'cinder', group => 'cinder', cap_mon => 'allow r', cap_osd => ""allow class-read object_prefix rbd_children, allow rwx pool=${cinder_backup_pool}, allow rwx pool=${cinder_pool}"", inject => true, }",CWE-798,1
+request-123,"apache::conf { 'fcgi_headers': source => 'puppet:///modules/apache/conf/fcgi_headers.conf', priority => 0, }",CWE-276,1
+request-124,$keystone_admin_token,CWE-522,1
+request-125,"mtu => 65000,",CWE-770,1
+request-126,,,0
+request-127,"""/etc/papertrail-bundle.pem"": mode => '0644', source => 'puppet:///modules/log_aggregator/etc/papertrail-bundle.pem';",CWE-732,1
+request-128,"exec { ""npm_global_${title}"": command => ""/usr/bin/npm install -g ${title}"", user => 'root', group => 'root', ... }",CWE-78,1
+request-129,"if ($::operatingsystem == windows and $cleartext_password != '') { file { ""${ssh::settings::genkey_dir}/${username}.pass"": content => $cleartext_password, notify => $ssh::settings::notify_on_key_change; } }",CWE-256,1
+request-130,"exec { 'enable_forwarding': command => 'echo 1 > /proc/sys/net/ipv4/ip_forward', unless => 'cat /proc/sys/net/ipv4/ip_forward | grep -q 1', }",CWE-732,1
+request-130,"exec { 'save_ipv4_forward': command => 'sed -i --follow-symlinks -e ""/net\.ipv4\.ip_forward/d"" \ /etc/sysctl.conf && echo ""net.ipv4.ip_forward = 1"" >> \ /etc/sysctl.conf', unless => 'grep -q ""^\s*net\.ipv4\.ip_forward = 1"" /etc/sysctl.conf', }",CWE-732,1
+request-130,"exec { 'enable_nat_filter': command => 'iptables -t filter -i forward 1 -j accept; \ /etc/init.d/iptables save', unless => 'iptables -t filter -s forward | grep -q ""^-a forward \ -j accept""' }",CWE-284,1
+request-130,"exec { 'enable_nat_filter': command => 'iptables -t filter -i forward 1 -j accept; \ iptables-save -c > /etc/iptables.rules', unless => 'iptables -t filter -s forward | grep -q ""^-a \ forward -j accept""' }",CWE-284,1
+request-131,"exec { 'add-post-up-parent-clean': command => ""/bin/echo 'post-up ip addr flush dev $iser_parent' >> $ifcfg_child"", onlyif => ""/usr/bin/test -f $ifcfg_child && ! /bin/grep -q post-up $ifcfg_child"", refreshonly => true, }",CWE-78,1
+request-132,"file { '/tmp/swift_test_file.rb': mode => '0755', content => template('swift/swift_keystone_test.erb'), tag => 'swift-file', }",CWE-732,1
+request-133,"exec { ""create_partition-${name}"": command => ""dd if=/dev/zero of=${base_dir}/${name} bs=${byte_size} count=0 seek=${seek}"", path => ['/usr/bin/', '/bin'], unless => ""test -f ${base_dir}/${name}"", require => file[$base_dir], before => anchor['swift::config::end'], }",CWE-78,1
+request-134,"file {""${::l23network::params::interfaces_dir}/interface-up-script-${port_name}"": ensure => present, owner => 'root', mode => '0755', content => template('l23network/centos_post_up.erb'), }",CWE-732,1
+request-135,$keyring = '/var/lib/ceph/mds/$cluster-$id/keyring',CWE-377,1
+request-136,"file { '/etc/profile.d/phpsh.sh': source => 'puppet:///modules/mediawiki/phpsh.sh', mode => '0555', }",CWE-732,1
+request-137,"file { '/usr/local/bin/check_hdfs_active_namenode': source => 'puppet:///modules/cdh/hadoop/check_hdfs_active_namenode', owner => 'root', group => 'hdfs', mode => '0555', }",CWE-732,1
+request-138,"file { $common_settings['hhvm']['repo']['central']['path']: ensure => file, owner => 'www-data', group => 'www-data', mode => '0666', before => env::alternative['hhvm_as_default_php'], }",CWE-732,1
+request-139,'service:api/api_host' : value => $api_host;,CWE-200,1
+request-139,'service:api/auth_strategy' : value => $auth_strategy;,CWE-306,1
+request-140,"mysql::sql { ""grant all privileges on ${db_name}.* to ${db_user}@${grant_db_host}"": unless => ""select 1 from information_schema.schema_privileges where table_schema = '${db_name}' and grantee = \""'${db_user}'@'${grant_db_host}'\"" limit 1"", require => mysql::user[$db_user], }",CWE-266,1
+request-141,password_hash => mysql_password($password),CWE-311,1
+request-142,'program:contrail-vrouter-dpdk/loglevel': value => 'debug';,CWE-215,1
+request-142,"content => template('contrail/agent_param.erb'),",CWE-22,1
+request-142,"restart => 'service supervisor-vrouter stop && \ modprobe -r vrouter && \ sync && \ echo 3 > /proc/sys/vm/drop_caches && \ echo 1 > /proc/sys/vm/compact_memory && \ service supervisor-vrouter start',",CWE-78,1
+request-142,"file_line {'apply_dpdk_on_vf_after_reboot': line => join($cmd_arr, ' '), path => '/etc/rc.local', }",CWE-494,1
+request-143,"ensure_resource('file', '/etc/neutron/plugins', { ensure => directory, owner => 'root', group => 'neutron', mode => '0640'} )",CWE-276,1
+request-143,"ensure_resource('file', '/etc/neutron/plugins/cisco', { ensure => directory, owner => 'root', group => 'neutron', mode => '0640'} )",CWE-276,1
+request-144,"yumrepo { ""${fuel_version}_auxiliary"":
+  name    => ""${fuel_version}_auxiliary"",
+  descr   => ""${fuel_version}_auxiliary"",
+  baseurl => ""file://${centos_dir}"",
+  gpgcheck => '0',
+  priority => $priority,
+}",CWE-494,1
+request-145,'haproxy/user_group': value => $user_group;,CWE-732,1
+request-146,,,0
+request-147,"nrpe_command => ""/usr/lib/nagios/plugins/check_disk \ -w ${pct_warning}% -c ${pct_critical}% -l -e --exclude-type=tracefs""",CWE-78,1
+request-148,,,0
+request-149,,,0
+request-150,$database_connection = 'sqlite:////var/lib/octavia/octavia.sqlite',CWE-312,1
+request-151,"class { '::mysql::server': config_hash => { 'bind_address' => '0.0.0.0', }, }",CWE-284,1
+request-151,$db_password = 'password',CWE-798,1
+request-151,$rabbit_password = 'ironic',CWE-798,1
+request-151,"""ipmi_password"": ""pass""",CWE-798,1
+request-151,"class { '::ironic::bifrost': network_interface => 'eth1', ironic_db_password => 'changeme', mysql_password => 'changemetoo', baremetal_json_hosts => $baremetal_json_hosts, }",CWE-798,1
+request-152,"'amazon_audit_working_log_dir' => '/tmp/amazon_audit/',",CWE-379,1
+request-152,"'astropay_audit_working_log_dir' => '/tmp/astropay_audit/',",CWE-379,1
+request-153,"package { ""ccache"": ensure => '3.1.9-3moz0'; }",CWE-494,1
+request-153,"packages::pkgdmg { ccache: version => ""3.1.7""; }",CWE-494,1
+request-154,"file { ""/usr/lib64/nagios/plugins/${name}"": mode => '0755', owner => 'nagios', seltype => 'nagios_unconfined_plugin_exec_t', content => template(""packstack/${name}.erb""), }",CWE-732,1
+request-154,"nagios_command { $name: command_line => ""/usr/lib64/nagios/plugins/${name}"", owner => 'nagios', group => 'nagios', mode => '0644', }",CWE-250,1
+request-155,"python::virtualenv { ""${basedir}"": ... user => $owner, group => $group, ... }",CWE-732,1
+request-156,"file { '/etc/dnsmasq.d': ensure => 'directory', recurse => true, purge => true, }",CWE-732,1
+request-157,$nas_password = $::os_service_default,CWE-798,1
+request-157,$nas_private_key = $::os_service_default,CWE-798,1
+request-158,,,0
+request-159,,,0
+request-160,"@file { ""/tmp/colltest1"": content => ""one"" }",CWE-377,1
+request-160,"@file { ""/tmp/colltest2"": content => ""two"" }",CWE-377,1
+request-161,"file{""${concatdir}/bin/concatfragments.rb"": owner => $id, group => $root_group, mode => '0775', source => $fragments_source; ... }",CWE-732,1
+request-162,"mediawiki::maintenance { 'wikidata-populate-site-tables': command => ""/usr/local/bin/foreachwikiwithextension wikidatabuildresources extensions/wikidatabuildresources/extensions/wikibase/lib/maintenance/populatesitestable.php --load-from http://en${mediawiki::multiwiki::base_domain}${::port_fragment}/w/api.php"", refreshonly => true, }",CWE-829,1
+request-163,,,0
+request-164,,,0
+request-165,,,0
+request-166,"exec { 'add_6wind_ppa': command => '/usr/bin/add-apt-repository -y ppa:6wind/virt-mq-current', }",CWE-494,1
+request-167,"""${default_swift_reference}/key"": value => $swift_store_key;",CWE-522,1
+request-168,,,0
+request-169,,,0
+request-170,"keystone_user { $auth_user: ensure => present, password => $auth_pass, email => $email, }",CWE-798,1
+request-170,"keystone_user_role { ""${auth_user}@${tenant}"": ensure => present, roles => 'admin', require => keystone_user[$auth_user], }",CWE-266,1
+request-171,"file { $file_setupteps: ensure => file, content => template('opendaylight/setup_teps.py'), }",CWE-434,1
+request-171,"exec { 'setup_teps': command => ""python $file_setupteps ${opendaylight::odl_mgmt_ips[0]} ${tunneling_ip} $ovsdb_managers"", require => file[$file_setupteps], path => '/usr/local/bin:/usr/bin:/sbin:/bin:/usr/local/sbin:/usr/sbin', }",CWE-78,1
+request-172,"class { '::rsync::server': use_xinetd => true, address => $local_net_ip, use_chroot => 'no', }",CWE-250,1
+request-173,,,0
+request-174,"class mistral::cors ( $allowed_origin = $::os_service_default, ... ) { oslo::cors { 'mistral_config': allowed_origin => $allowed_origin, ... } }",CWE-942,1
+request-175,,,0
+request-176,"file { '/etc/sysconfig/allocate_vfs': ensure => file, content => $content_string, group => 'root', mode => '0755', owner => 'root', }",CWE-732,1
+request-176,"file { '/sbin/ifup-local': group => 'root', mode => '0755', owner => 'root', content => ' replace => false }",CWE-732,1
+request-177,$policy_path = '/etc/heat/policy.json',CWE-276,1
+request-178,,,0
+request-179,"file { '/etc/logrotate.d/mediawiki_flow': source => 'puppet:///modules/role/flow/logrotate.d-mediawiki-flow', owner => 'root', group => 'root', mode => '0444', }",CWE-732,1
+request-180,,,0
+request-181,"concat { $haproxy::config_file: owner => '0', group => '0', mode => '0644', }",CWE-732,1
+request-182,"phabricator::config { 'phabricator.show-prototypes': deploy_dir => $::phabricator::deploy_dir, value => true, }",CWE-497,1
+request-183,"wgglobaluserpageapiurl => ""http://gup${::mediawiki::multiwiki::base_domain}${::port_fragment}/w/api.php""",CWE-319,1
+request-184,exec { logoutput => true },CWE-78,1
+request-185,,,0
+request-186,,,0
+request-187,"create_resources('ceph::pool', $ceph_pools)",CWE-915,1
+request-188,,,0
+request-189,"""${name}/share_mount_path"": value => $share_mount_path;",CWE-732,1
+request-190,"shared::execonce { 'test-exec': command => ""/bin/touch /tmp/foo""; }",CWE-78,1
+request-191,mistral_config { 'engine/host': value => $host; 'engine/topic': value => $topic; 'engine/version': value => $version; 'engine/execution_field_size_limit_kb': value => $execution_field_size_limit_kb; 'execution_expiration_policy/evaluation_interval': value => $evaluation_interval; 'execution_expiration_policy/older_than': value => $older_than; },CWE-15,1
+request-192,"file { 'c:\program files\uvnc bvba\ultravnc\ultravnc.ini': require => class[""packages::ultravnc""], replace => true, show_diff => false, content => template(""vnc/ultravnc.ini.erb""), }",CWE-538,1
+request-193,"file { '/etc/init/activemq.conf': content => template('activemq/activemq-upstart.conf.erb'), owner => 'root', group => 'root', mode => '0644', }",CWE-732,1
+request-194,,,0
+request-195,"file { $net_topology_script_path: ensure => $net_topology_script_ensure, mode => '0755', }",CWE-732,1
+request-196,,,0
